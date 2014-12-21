@@ -11,7 +11,8 @@ class chapter02 {
     else fib(n - 2) + fib(n - 1)
 
   // Exercise 2.2
-  def isSorted[A](as: Array[A], ordered: (A, A) => Boolean): Boolean = {
+  def isSorted[A](as: Array[A])(ordered: (A, A) => Boolean): Boolean = {
+
     def check(prevElem: A, i: Int): Boolean = {
       if (i >= as.length)
         true
@@ -26,4 +27,5 @@ class chapter02 {
     else
       check(as(0), 1)
   }
+
 }

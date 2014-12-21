@@ -30,39 +30,39 @@ class chapter02Exercise22 extends FunSuite {
   val ch = new chapter02
 
   test("isSorted on empty array returns true") {
-    var array = Array[Int]()
-    var actual = ch.isSorted(array, (x:Int, y:Int) => x < y)
-    assert(true == actual)
+    val array = Array[Int]()
+    val actual = ch.isSorted(array)((x, y) => x < y)
+    assert(actual)
   }
 
   test("isSorted on one-element array returns true") {
-    var array = Array(1)
-    var actual = ch.isSorted(array, (x:Int, y:Int) => x < y)
-    assert(true == actual)
+    val array = Array(1)
+    val actual = ch.isSorted(array)((x, y) => x < y)
+    assert(actual)
   }
 
   test("isSorted on sorted array returns true") {
-    var array = Array(1, 2, 3)
-    var actual = ch.isSorted(array, (x:Int, y:Int) => x < y)
-    assert(true == actual)
+    val array = Array(1, 2, 3)
+    val actual = ch.isSorted(array)((x, y) => x < y)
+    assert(actual)
   }
 
   test("isSorted on unsorted array returns false") {
-    var array = Array(1, 3, 2)
-    var actual = ch.isSorted(array, (x:Int, y:Int) => x < y)
-    assert(false == actual)
+    val array = Array(1, 3, 2)
+    val actual = ch.isSorted(array)((x, y) => x < y)
+    assert(!actual)
   }
 
   test("isSorted on sorted char array returns true") {
-    var array = "abcdef".toCharArray()
-    var actual = ch.isSorted(array, (x:Char, y:Char) => x < y)
-    assert(false == actual)
+    val array = "abcdef".toCharArray
+    val actual = ch.isSorted(array)((x, y) => x < y)
+    assert(actual)
   }
 
   test("isSorted on unsorted char array returns false") {
-    var array = "scala".toCharArray()
-    var actual = ch.isSorted(array, (x:Char, y:Char) => x < y)
-    assert(false == actual)
+    val array = "scala".toCharArray
+    val actual = ch.isSorted(array)((x, y) => x < y)
+    assert(!actual)
   }
 
 }
