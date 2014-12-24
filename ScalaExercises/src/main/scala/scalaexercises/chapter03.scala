@@ -1,6 +1,7 @@
 package scalaexercises
 
 import scala.collection.immutable.List
+import scala.collection.immutable.Nil
 
 // Chapter 3
 class chapter03 {
@@ -43,5 +44,15 @@ class chapter03 {
     case h :: Nil => Nil
     case h :: t => h :: init(t)
   }
+
+  def foldRight[A,B](as: List[A], z:B)(f: (A,B) => B) : B =
+    as match {
+      case Nil => z
+      case x :: xs => f(x, foldRight(xs,z)(f))
+    }
+
+  // Exercise 3.9
+  def length[A](as: List[A]): Int =
+    foldRight(as, 0)((a: A, i: Int) => i+1)
 
 }

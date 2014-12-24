@@ -75,3 +75,16 @@ class chapter03Exercise36Test extends FunSuite with ShouldMatchers {
   }
 }
 
+
+// Exercise 3.9
+class chapter03Exercise39Test extends FunSuite with ShouldMatchers {
+  val ch = new chapter03
+
+  test("length returns 0 for an empty list") {
+    ch.length(List()) should equal (0)
+  }
+
+  test("length returns list length") {
+    ch.length(List(1,2,3)) should equal (3)
+  }
+}
