@@ -88,3 +88,16 @@ class chapter03Exercise39Test extends FunSuite with ShouldMatchers {
     ch.length(List(1,2,3)) should equal (3)
   }
 }
+
+// Exercise 3.10
+class chapter03Exercise10Test extends FunSuite with ShouldMatchers {
+  val ch = new chapter03
+
+  test("foldLeft returns z for an empty list") {
+    ch.foldLeft(List[Int](), 42)(_ + _) should equal (42)
+  }
+
+  test("foldLeft can be used to sum values in the list") {
+    ch.foldLeft((1 to 100).toList, 0)(_ + _) should equal (5050)
+  }
+}

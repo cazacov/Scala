@@ -4,7 +4,7 @@ import scala.collection.immutable.List
 import scala.collection.immutable.Nil
 
 // Chapter 3
-class chapter03 {
+final class chapter03 {
 
   // Exercise 3.2
   def tail[A](l: List[A]): List[A] = l match {
@@ -54,5 +54,13 @@ class chapter03 {
   // Exercise 3.9
   def length[A](as: List[A]): Int =
     foldRight(as, 0)((a: A, i: Int) => i+1)
+
+  // Exercise 3.10
+  @annotation.tailrec
+  def foldLeft[A,B](as: List[A], z:B)(f: (B,A) => B):B =
+    as match {
+      case Nil => z
+      case x::t => foldLeft(t, f(z, x))(f)
+    }
 
 }
