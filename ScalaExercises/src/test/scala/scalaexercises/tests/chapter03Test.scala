@@ -101,3 +101,45 @@ class chapter03Exercise10Test extends FunSuite with ShouldMatchers {
     ch.foldLeft((1 to 100).toList, 0)(_ + _) should equal (5050)
   }
 }
+
+
+// Exercise 3.11
+class chapter03Exercise11Test extends FunSuite with ShouldMatchers {
+  val ch = new chapter03
+
+  test("sumLeft works as expected") {
+    ch.sumLeft((1 to 100).toList) should equal (5050)
+  }
+
+  test("productLeft works as expected") {
+    ch.productLeft(List(1,2,3,4,5,6)) should equal (720)
+  }
+
+  test("lengthLeft works as expected") {
+    ch.lengthLeft((1 to 100000).toList) should equal (100000)
+  }
+}
+
+
+// Exercise 3.12
+class chapter03Exercise12Test extends FunSuite with ShouldMatchers {
+  val ch = new chapter03
+
+  test("reverse works as expected") {
+    ch.reverse(List(1,2,3)) should equal (List(3,2,1))
+  }
+
+  test("reverse of empty list is an empty list") {
+    ch.reverse(List()) should equal (List())
+  }
+}
+
+
+// Exercise 3.12
+class chapter03Exercise13Test extends FunSuite with ShouldMatchers {
+  val ch = new chapter03
+
+  test("foldRight can be expressed with foldLeft") {
+    ch.foldRightWithLeft("abcde".toList, "")((ch: Char, acc:String) => acc + ch) should equal ("edcba")
+  }
+}

@@ -1,8 +1,5 @@
 package scalaexercises
 
-import scala.collection.immutable.List
-import scala.collection.immutable.Nil
-
 // Chapter 3
 final class chapter03 {
 
@@ -63,4 +60,23 @@ final class chapter03 {
       case x::t => foldLeft(t, f(z, x))(f)
     }
 
+  // Exercise 3.11
+  def sumLeft(as: List[Int]): Int =
+    foldLeft(as, 0)(_ + _)
+
+  def productLeft(as: List[Int]): Int =
+    foldLeft(as, 1)(_ * _)
+
+  def lengthLeft[A](as: List[A]): Int =
+    foldLeft(as, 0)((i: Int, a: A) => i+1)
+
+  // Exercise 3.12
+  def reverse[A](as: List[A]): List[A] =
+    foldLeft(as, List[A]())((acc: List[A], a: A) => a :: acc)
+
+  // Exercise 3.13
+  def foldRightWithLeft[A,B](as: List[A], z:B)(f: (A,B) => B) : B = {
+    val rev =foldLeft(as, List[A]())((acc: List[A], a: A) => a :: acc)
+    foldLeft(rev, z)((c, d) => f(d, c))
+  }
 }
