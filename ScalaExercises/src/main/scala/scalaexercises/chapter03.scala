@@ -79,4 +79,19 @@ final class chapter03 {
     val rev =foldLeft(as, List[A]())((acc: List[A], a: A) => a :: acc)
     foldLeft(rev, z)((c, d) => f(d, c))
   }
+
+  // Exercise 3.14
+  def append[A](a1: List[A], a2: List[A]): List[A] =
+    // Some optimization
+    if (a1.isEmpty)
+      a2
+    else if (a2.isEmpty)
+      a1
+    else
+      // Append expressed in terms of foldRight
+      foldRight(a1, a2)((a, acc) => a :: acc)
+
+  // Exercise 3.15
+  def concat[A](ass: List[List[A]]): List[A] =
+    reverse(foldLeft(ass, List[A]())((acc, list) => foldLeft(list, acc)((ac, elem) => elem :: ac)))
 }

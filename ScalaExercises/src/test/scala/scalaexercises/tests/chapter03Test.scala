@@ -134,12 +134,45 @@ class chapter03Exercise12Test extends FunSuite with ShouldMatchers {
   }
 }
 
-
 // Exercise 3.12
 class chapter03Exercise13Test extends FunSuite with ShouldMatchers {
   val ch = new chapter03
 
   test("foldRight can be expressed with foldLeft") {
     ch.foldRightWithLeft("abcde".toList, "")((ch: Char, acc:String) => acc + ch) should equal ("edcba")
+  }
+}
+
+// Exercise 3.14
+class chapter03Exercise14Test extends FunSuite with ShouldMatchers {
+  val ch = new chapter03
+
+  test("append works as expected") {
+    ch.append("abc".toList, "def".toList) should equal ("abcdef".toList)
+  }
+
+  test("append of an empty list returns the first list") {
+    ch.append(List(1,2,3), List()) should equal (List(1,2,3))
+  }
+
+  test("append to an empty list returns the second list") {
+    ch.append(List(), List(1,2,3)) should equal (List(1,2,3))
+  }
+}
+
+// Exercise 3.15
+class chapter03Exercise15Test extends FunSuite with ShouldMatchers {
+  val ch = new chapter03
+
+  test("concat of empty list returns an empty list") {
+    ch.concat(List(List())) should equal (List())
+  }
+
+  test("concat of two empty lists returns an empty list") {
+    ch.concat(List(List(), List())) should equal (List())
+  }
+
+  test("concat concatenates a list of lists into a single list") {
+    ch.concat(List(List(1,2,3), List[Int](), List(4,5), List(6,7,8), List[Int]())) should equal (List(1,2,3,4,5, 6, 7,8))
   }
 }
