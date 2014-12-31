@@ -176,3 +176,39 @@ class chapter03Exercise15Test extends FunSuite with ShouldMatchers {
     ch.concat(List(List(1,2,3), List[Int](), List(4,5), List(6,7,8), List[Int]())) should equal (List(1,2,3,4,5, 6, 7,8))
   }
 }
+
+// Exercise 3.16
+class chapter03Exercise16Test extends FunSuite with ShouldMatchers {
+  val ch = new chapter03
+
+  test("incrementList increments every element of the list") {
+    ch.incrementList(List(1,2,3)) should equal (List(2,3,4))
+  }
+}
+
+// Exercise 3.18
+class chapter03Exercise18Test extends FunSuite with ShouldMatchers {
+  val ch = new chapter03
+
+  test("map function maps every element of the list into a new one") {
+    ch.map(List(1,2,3))((x: Int) => 2 * x) should equal (List(2,4,6))
+  }
+}
+
+// Exercise 3.19
+class chapter03Exercise19Test extends FunSuite with ShouldMatchers {
+  val ch = new chapter03
+
+  test("filter function works as expected") {
+    ch.filter(List(1,2,3,4,5,6,7,8))((x: Int) => (x % 2 == 0)) should equal (List(2,4,6,8))
+  }
+}
+
+// Exercise 3.20
+class chapter03Exercise20Test extends FunSuite with ShouldMatchers {
+  val ch = new chapter03
+
+  test("flatMap function works as expected") {
+    ch.flatMap(List(1,2,3))(i => List(i,i)) should equal (List(1,1,2,2,3,3))
+  }
+}

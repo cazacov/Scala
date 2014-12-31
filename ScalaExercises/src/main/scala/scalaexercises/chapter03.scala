@@ -94,4 +94,35 @@ final class chapter03 {
   // Exercise 3.15
   def concat[A](ass: List[List[A]]): List[A] =
     reverse(foldLeft(ass, List[A]())((acc, list) => foldLeft(list, acc)((ac, elem) => elem :: ac)))
+
+  // Exercise 3.16
+  def incrementList(as: List[Int]): List[Int] =
+    foldRight(as, List[Int]())((i: Int, acc: List[Int]) => (i+1):: acc)
+
+  // Exercise 3.18
+  def map[A,B](as: List[A])(f: A=>B): List[B] =
+    as match {
+      case Nil => Nil
+      case x :: xs => f(x) :: map(xs)(f)
+    }
+
+  // Exercise 3.19
+  def filter[A](as: List[A])(f: A => Boolean): List[A] =
+    as match {
+      case Nil => Nil
+      case x :: xs =>
+        if (f(x))
+          x :: filter(xs)(f)
+        else
+          filter(xs)(f)
+    }
+
+  // Exercise 3.20
+  def flatMap[A,B](as: List[A])(f: A => List[B]): List[B] =
+    as match {
+      case Nil => Nil
+      case x :: xs =>
+        f(x) ++ flatMap(xs)(f)
+    }
+
 }
