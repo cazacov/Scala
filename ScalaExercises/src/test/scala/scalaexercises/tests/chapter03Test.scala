@@ -212,3 +212,43 @@ class chapter03Exercise20Test extends FunSuite with ShouldMatchers {
     ch.flatMap(List(1,2,3))(i => List(i,i)) should equal (List(1,1,2,2,3,3))
   }
 }
+
+// Exercise 3.21
+class chapter03Exercise21Test extends FunSuite with ShouldMatchers {
+  val ch = new chapter03
+
+  test("filter function can be implemented using flatMap") {
+    ch.filterWithFlatMap(List(1,2,3,4,5,6,7,8))((x: Int) => (x % 2 == 0)) should equal (List(2,4,6,8))
+  }
+}
+
+// Exercise 3.22
+class chapter03Exercise22Test extends FunSuite with ShouldMatchers {
+  val ch = new chapter03
+
+  test("zipInt adds integer lists that have same length") {
+    ch.zipInts(List(1,2,3), List(4,5,6)) should equal (List(5,7,9))
+  }
+
+  test("zipInt can handle lists of different length") {
+    ch.zipInts(List(1,2,3), List(4,5)) should equal (List(5,7,3))
+  }
+
+  test("zipInt can handle lists of different length 2") {
+    ch.zipInts(List(1,2), List(4,5,6)) should equal (List(5,7,6))
+  }
+}
+
+// Exercise 3.23
+class chapter03Exercise23Test extends FunSuite with ShouldMatchers {
+  val ch = new chapter03
+
+  test("zipWith can be used to add integer lists that have same length") {
+    ch.zipWith(List(1,2,3), List(4,5,6))(_+_) should equal (List(5,7,9))
+  }
+
+  test("zipWith can be used to multiply integer lists that have same length") {
+    ch.zipWith(List(1,2,3), List(4,5,6))(_*_) should equal (List(4,10,18))
+  }
+
+}

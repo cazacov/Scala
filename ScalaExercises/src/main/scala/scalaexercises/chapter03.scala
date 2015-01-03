@@ -125,4 +125,36 @@ final class chapter03 {
         f(x) ++ flatMap(xs)(f)
     }
 
+  // Exercise 3.21
+  def filterWithFlatMap[A](as: List[A])(f: A => Boolean): List[A] =
+    flatMap(as)( (elem:A) => if (f(elem)) List(elem) else List[A]())
+
+
+  // Exercise 3.22
+  def zipInts(as: List[Int], bs: List[Int]):List[Int] =
+    as match {
+      case Nil => bs
+      case ah :: at =>
+        bs match {
+          case Nil => as
+          case bh :: bt =>
+            (ah + bh) :: zipInts(at, bt)
+        }
+    }
+
+  // Exercise 3.23
+  def zipWith[A,B,C](as: List[A], bs: List[B])(f: (A,B) => C):List[C] =
+    as match {
+      case Nil =>
+        bs match {
+          case Nil => Nil
+          case _ => throw new RuntimeException("Lists must have the same length")
+        }
+      case ah :: at =>
+        bs match {
+          case Nil => throw new RuntimeException("Lists must have the same length")
+          case bh :: bt =>
+            f(ah,bh) :: zipWith(at, bt)(f)
+        }
+    }
 }
