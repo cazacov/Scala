@@ -157,4 +157,37 @@ final class chapter03 {
             f(ah,bh) :: zipWith(at, bt)(f)
         }
     }
+
+  // Exercise 3.24
+  def hasSubsequence[A](sup: List[A], sub: List[A]): Boolean = {
+    def startsWith[A](sup: List[A], sub: List[A]): Boolean =
+      sub match {
+        case Nil => true
+        case h :: t =>
+          sup match {
+            case Nil => false
+            case sh :: st =>
+              if (h != sh)
+                false
+              else
+                startsWith(st, t)
+          }
+      }
+
+    sub match {
+      case Nil => true
+      case h :: t =>
+        sup match {
+          case Nil => false
+          case sh :: st =>
+            if (h != sh)
+              hasSubsequence(st, sub)
+            else
+              if (startsWith(st, t))
+                true
+              else
+                hasSubsequence(st, sub)
+        }
+    }
+  }
 }

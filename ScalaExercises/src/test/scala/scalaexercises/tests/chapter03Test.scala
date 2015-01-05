@@ -252,3 +252,42 @@ class chapter03Exercise23Test extends FunSuite with ShouldMatchers {
   }
 
 }
+
+// Exercise 3.24
+class chapter03Exercise24Test extends FunSuite with ShouldMatchers {
+  val ch = new chapter03
+
+  test("test hasSequence") {
+    ch.hasSubsequence(List(1,2,3, 4), List(4,5,6)) should equal (false)
+  }
+
+  test("test hasSequence2") {
+    ch.hasSubsequence(List(1,2,3,4), List(1,2)) should equal (true)
+  }
+
+  test("test hasSequence3") {
+    ch.hasSubsequence(List(1,2,3,4), List(2,3)) should equal (true)
+  }
+
+  test("test hasSequence4") {
+    ch.hasSubsequence(List(1,2,3,4), List(4)) should equal (true)
+  }
+
+  test("test hasSequence5") {
+    ch.hasSubsequence(List(1,2,3,4), List(1,2,4)) should equal (false)
+  }
+
+  test("test hasSequence6") {
+    ch.hasSubsequence(List(), List()) should equal (true)
+  }
+
+  test("test hasSequence7") {
+    ch.hasSubsequence(List(), List(1)) should equal (false)
+  }
+
+  test("test hasSequence8") {
+    ch.hasSubsequence(List(1), List()) should equal (true)
+  }
+
+
+}
