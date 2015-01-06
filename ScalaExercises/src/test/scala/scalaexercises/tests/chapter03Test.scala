@@ -2,7 +2,7 @@ package scalaexercises.tests
 
 import org.scalatest.ShouldMatchers
 
-import scalaexercises.chapter03
+import scalaexercises._
 import org.scalatest.FunSuite
 
 // Exercise 3.2
@@ -290,4 +290,70 @@ class chapter03Exercise24Test extends FunSuite with ShouldMatchers {
   }
 
 
+}
+
+// Exercise 3.25
+class chapter03Exercise25Test extends FunSuite with ShouldMatchers {
+  val ch = new treeFunctions();
+
+  test("Tree size works as expected")
+  {
+    ch.size(new Branch(new Branch(new Leaf(1), new Leaf(2)), new Leaf(3))) should equal (5)
+  }
+}
+
+// Exercise 3.26
+class chapter03Exercise26Test extends FunSuite with ShouldMatchers {
+  val ch = new treeFunctions();
+
+  test("Tree maximum works as expected")
+  {
+    ch.maximum(new Branch(new Branch(new Leaf(1), new Leaf(5)), new Leaf(3))) should equal (5)
+  }
+}
+
+
+// Exercise 3.27
+class chapter03Exercise27Test extends FunSuite with ShouldMatchers {
+  val ch = new treeFunctions();
+
+  test("Tree depth works as expected")
+  {
+    ch.depth(new Branch(new Branch(new Leaf(1), new Leaf(2)), new Leaf(3))) should equal (3)
+  }
+}
+
+// Exercise 3.28
+class chapter03Exercise28Test extends FunSuite with ShouldMatchers {
+  val ch = new treeFunctions();
+
+  test("Tree of integers can be mapped into tree of Strings")
+  {
+    ch.map(new Branch(new Branch(new Leaf(1), new Leaf(2)), new Leaf(3)))(_.toString()) should equal (new Branch(new Branch(new Leaf("1"), new Leaf("2")), new Leaf("3")))
+  }
+}
+
+// Exercise 3.29
+class chapter03Exercise29Test extends FunSuite with ShouldMatchers {
+  val ch = new treeFunctions();
+
+  test("Tree size can be implemented via fold")
+  {
+    ch.sizeViaFold(new Branch(new Branch(new Leaf(1), new Leaf(2)), new Leaf(3))) should equal (5)
+  }
+
+  test("Tree maximum can be implemented via fold")
+  {
+    ch.maximumViaFold(new Branch(new Branch(new Leaf(1), new Leaf(5)), new Leaf(3))) should equal (5)
+  }
+
+  test("Tree depth can be implemented via fold")
+  {
+    ch.depthViaFold(new Branch(new Branch(new Leaf(1), new Leaf(2)), new Leaf(3))) should equal (3)
+  }
+
+  test("Tree map can be implemented via fold")
+  {
+    ch.mapViaFold(new Branch(new Branch(new Leaf(1), new Leaf(2)), new Leaf(3)))(_.toString()) should equal (new Branch(new Branch(new Leaf("1"), new Leaf("2")), new Leaf("3")))
+  }
 }
