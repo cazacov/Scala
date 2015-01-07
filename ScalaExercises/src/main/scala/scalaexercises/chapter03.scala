@@ -148,11 +148,11 @@ final class chapter03 {
       case Nil =>
         bs match {
           case Nil => Nil
-          case _ => throw new RuntimeException("Lists must have the same length")
+          case _ => throw new IllegalArgumentException ("Lists must have the same length")
         }
       case ah :: at =>
         bs match {
-          case Nil => throw new RuntimeException("Lists must have the same length")
+          case Nil => throw new IllegalArgumentException ("Lists must have the same length")
           case bh :: bt =>
             f(ah,bh) :: zipWith(at, bt)(f)
         }
@@ -161,33 +161,27 @@ final class chapter03 {
   // Exercise 3.24
   def hasSubsequence[A](sup: List[A], sub: List[A]): Boolean = {
     def startsWith[A](sup: List[A], sub: List[A]): Boolean =
-      sub match {
-        case Nil => true
-        case h :: t =>
-          sup match {
-            case Nil => false
-            case sh :: st =>
-              if (h != sh)
-                false
-              else
-                startsWith(st, t)
-          }
+      (sub, sup) match {
+        case (Nil,_) => true
+        case (h :: t, Nil) => false
+        case (h :: t, sh ::st) =>
+          if (h != sh)
+            false
+          else
+            startsWith(st, t)
       }
 
-    sub match {
-      case Nil => true
-      case h :: t =>
-        sup match {
-          case Nil => false
-          case sh :: st =>
-            if (h != sh)
-              hasSubsequence(st, sub)
-            else
-              if (startsWith(st, t))
-                true
-              else
-                hasSubsequence(st, sub)
-        }
+    (sub, sup) match {
+      case (Nil, _) => true
+      case (h :: t, Nil) => false
+      case (h :: t, sh :: st) =>
+        if (h != sh)
+          hasSubsequence(st, sub)
+        else
+          if (startsWith(st, t))
+            true
+          else
+            hasSubsequence(st, sub)
     }
   }
 }

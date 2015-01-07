@@ -251,6 +251,9 @@ class chapter03Exercise23Test extends FunSuite with ShouldMatchers {
     ch.zipWith(List(1,2,3), List(4,5,6))(_*_) should equal (List(4,10,18))
   }
 
+  test("Calling zipWidth with arguments of different length throws an InvalidArgumentException") {
+    an [IllegalArgumentException] should be thrownBy ch.zipWith(List(1,2,3), List(4,5))(_*_)
+  }
 }
 
 // Exercise 3.24
